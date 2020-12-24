@@ -1,0 +1,52 @@
+#端口号
+server:
+  port: 8110
+#项目名称
+
+#数据库连接池的配置参数
+
+spring:
+  application:
+    name: service-edu #应用名称
+
+  profiles:
+    active: dev #项目运行环境
+  datasource:
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli_edu?serverTimezone=GMT%2B8
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  cloud:
+    nacos:
+      server-addr: 47.116.68.95:8848 # 注册给nacos的注册中心
+    sentinel:
+      filter:
+        url-patterns: /**
+      transport:
+        port: 8081
+        dashboard: localhost:8080
+      eager: true
+  redis:
+    host: 47.116.68.95 # 服务器的公网ip
+    port: 26379 #服务器中的redis端口号
+    database: 0
+    #password: 123456 #默认为空
+    lettuce:
+      pool:
+        max-active: 20  #最大连接数，负值表示没有限制，默认8
+        max-wait: -1    #最大阻塞等待时间，负值表示没限制，默认-1
+        max-idle: 8     #最大空闲连接，默认8
+        min-idle: 0     #最小空闲连接，默认0
+
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #MyBatisPlus 的日志输出
+  mapper-locations: classpath:com/spy/guli/service/edu/mapper/xml/*.xml
+
+
+
